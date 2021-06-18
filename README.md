@@ -52,6 +52,7 @@ Maximum voltage on GPIO pins = 3.3V DC. GPIO pins are not overvoltage protected,
 
 # Physical Dimensions
 ![phys_dimensions_repo](https://user-images.githubusercontent.com/66629326/122562620-2e197400-d03b-11eb-876a-eb97ada749b9.jpg)
+
 *Height measurement is with pin headers soldered. 
 
 # Open Source Licensing 
