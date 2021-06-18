@@ -45,6 +45,7 @@
 ![abs_max_repo](https://user-images.githubusercontent.com/66629326/122562538-15a95980-d03b-11eb-8b5e-f1d52b7d8dae.jpg)
 
 Maximum voltage before clipping on Audio Input, Aux L & Aux R = 3.3V peak-to-peak, AC. Audio input paths are AC coupled. 
+
 Maximum voltage on GPIO pins = 3.3V DC. GPIO pins are not overvoltage protected, for voltages higher than 3.3V use an input protection circuit such as a diode clamp or a level shifter.
 
 # Current Consumption Characteristics 
