@@ -44,7 +44,7 @@
 # Absolute Maximum Ratings 
 ![abs_max_repo](https://user-images.githubusercontent.com/66629326/122562538-15a95980-d03b-11eb-8b5e-f1d52b7d8dae.jpg)
 
-Maximum voltage before clipping on Audio Input, Aux L & Aux R = 3.3V peak-to-peak, AC. Input paths are AC coupled. 
+Maximum voltage before clipping on Audio Input, Aux L & Aux R = 3.3V peak-to-peak, AC. Audio input paths are AC coupled. 
 Maximum voltage on GPIO pins = 3.3V DC. GPIO pins are not overvoltage protected, for voltages higher than 3.3V use an input protection circuit such as a diode clamp or a level shifter.
 
 # Current Consumption Characteristics 
@@ -52,11 +52,11 @@ Maximum voltage on GPIO pins = 3.3V DC. GPIO pins are not overvoltage protected,
 
 # Physical Dimensions
 ![phys_dimensions_repo](https://user-images.githubusercontent.com/66629326/122562620-2e197400-d03b-11eb-876a-eb97ada749b9.jpg)
-* with pin headers soldered 
+Height measurement is with pin headers soldered. 
 
 # Open Source Licensing 
 
-**PICO DSP** hardware files are released as open source under the CERN v1.2 license. **PICO DSP** software examples are released under the MIT license, and where noted also contain other license information. Please review these licenses before using these files in your own projects to understand your obligations.
+**PICO DSP** hardware files are released as open source under the CERN v1.2 license. **PICO DSP** software examples are released under the MIT license, software examples using Faust DSP also contain additional license information relevant to Faust DSP. Please review these licenses before using these files in your own projects to understand your obligations.
 
 # Crowd Supply link
 
