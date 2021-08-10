@@ -1,6 +1,9 @@
 # PICO DSP
 
-**PICO DSP** is an open source, Arduino compatible ESP32 development board for audio and digital signal processing applications. In this repository you will find the hardware design files, and software examples for Arduino IDE, ESP-IDF and VSCode/PlatformIO. 
+**PICO DSP** is an open source, Arduino compatible ESP32 development board for audio and digital signal processing applications. In this repository you will find the hardware design files, and software examples for; 
+- Arduino IDE
+- VSCode/PlatformIO with Platform Espressif 32 and Framework arduinoespressif32 
+- VSCode/PlatformIO with Platform Espressif 32 and Framework espidf
 
 # Specifications 
 
