@@ -24,6 +24,10 @@
 - ESD protection on all audio inputs and outputs
 - Support for 8, 11.025, 12, 16, 22.05, 24, 32, 44.1 and 48kHz sample rates
 - 1W Speaker Driver, routed to GPIO Header
+- DAC SNR 98 dB, THD -84 dB (‘A’ weighted @ 48 kHz)
+- ADC SNR 95 dB, THD -84 dB (‘A’ weighted @ 48 kHz)
+- Line input impedance: 1 M ohm
+- Line output impedance: 33 ohm
 
 **Form Factor and Connectivity**
 - Breadboard friendly
