@@ -57,6 +57,7 @@ boolean network::serverInit() {
   Update.onProgress(printProgress);
   server.onNotFound(notFound); 
   server.begin();
+  return true; 
 }
 
 void network::mdnsInit(void)
