@@ -14,7 +14,7 @@
 #include "WM8978.h"
 
 #define I2S_SAMPLE_RATE     (32000)   // I2S sample rate 
-#define I2S_READLEN         64 * 4
+#define I2S_READLEN         256 * 4
 
 // Define 12S pins
 #define I2S_BCLK       23  // Bit clock // 33 on TTGO_TAUDIO
@@ -67,7 +67,7 @@ static inline int16_t dummyfilter(int16_t x)
 }
 
 
-static void i2s_passthrough() {       // function to read the 12S data from the codec and write it to the output 
+static void i2s_passthrough() {       // function to read the I2S data from the codec and write it to the output 
 
 size_t i2s_bytes_read = 0;
 size_t i2s_bytes_written = 0;
@@ -77,16 +77,16 @@ float i2s_samples_write[I2S_READLEN / sizeof(float)];
 
 	while (1) {    // continuously read data over I2S, pass it through the filtering function and write it to the output
 		i2s_bytes_read = I2S_READLEN;
-		i2s_read(I2S_NUM_0, i2s_samples_read, I2S_READLEN, &i2s_bytes_read, 100);
+		i2s_read(I2S_NUM_0, i2s_samples_read, I2S_READLEN, &i2s_bytes_read, portMAX_DELAY); 
 
 		/* left channel filter */
-		for (uint32_t i = 0; i < i2s_bytes_read / 2; i += 2)
+		for (uint32_t i = 0; i < i2s_bytes_read / 2; i += 2) {
 			i2s_samples_write[i] = dummyfilter(i2s_samples_read[i]);
-
+    }
 		/* right channel filter */
-		for (uint32_t i = 1; i < i2s_bytes_read / 2; i += 2)
+		for (uint32_t i = 1; i < i2s_bytes_read / 2; i += 2) {
 			i2s_samples_write[i] = dummyfilter(i2s_samples_read[i]);
-
+    }
 		i2s_write(I2S_NUM_0, i2s_samples_write, i2s_bytes_read, &i2s_bytes_written, 100);
 
 	}
@@ -101,11 +101,10 @@ void setup() {
   wm8978.addaCfg(1,1);      // enable the adc and the dac
   wm8978.inputCfg(0,1,0);   // input config, line in enabled
   wm8978.outputCfg(1,0);    // output config
-  wm8978.sampleRate(1);     // sample rate, set to match I2S Sample Rate
+  wm8978.sampleRate(1);     // set the sample rate to match the I2S SAMPLE RATE
   wm8978.spkVolSet(40);     // speaker volume
   wm8978.hpVolSet(40,40);   // headphone volume
   wm8978.i2sCfg(2,0);       // I2S format MSB, 16Bit
-  wm8978.sampleRate(1);     // set the sample rate to match the I2S SAMPLE RATE
 
   vTaskDelay(2000/portTICK_RATE_MS);  
   i2s_passthrough();  
