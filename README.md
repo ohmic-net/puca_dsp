@@ -42,8 +42,7 @@
 - ESD protection on USB data bus
 
 # Documentation 
-
-![PICO_DSP-Pinout](https://user-images.githubusercontent.com/66629326/122237980-ab1be080-ceb7-11eb-8d9a-83141a8bc71b.jpg)
+![PUCA_DSP-PINOUT_V2](https://user-images.githubusercontent.com/66629326/191851613-018cffb7-077d-496f-b112-5e9db8a3537f.jpg)
 
 # Pin Description
 ![pin_description_repo](https://user-images.githubusercontent.com/66629326/122561950-5c4a8400-d03a-11eb-9e00-627c2fa488de.jpg)
