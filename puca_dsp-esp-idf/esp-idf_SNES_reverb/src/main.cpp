@@ -1,4 +1,4 @@
-// SNES Reverb emulator example for PICO DSP development board with 4MB Flash & PSRAM
+// SNES Reverb emulator example for PUCA DSP development board with 4MB Flash & PSRAM
 // Connect potentiometers to IO32, I033 and IO34 to change DSP Parameters
 
 #include "freertos/FreeRTOS.h"

@@ -1,4 +1,4 @@
-// Blink example for including Arduino as a component in ESP-IDF, for PICO DSP Development Board
+// Blink example for including Arduino as a component in ESP-IDF, for PUCA DSP Development Board
 
 #include <stdio.h>
 #include <freertos/FreeRTOS.h>
