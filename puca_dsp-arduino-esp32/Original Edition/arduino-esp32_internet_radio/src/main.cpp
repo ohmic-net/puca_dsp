@@ -1,4 +1,4 @@
-// ESP32 internet radio example for PICO_DSP development board Original Edition with 4MB Flash & PSRAM Enabled
+// ESP32 internet radio example for PUCA_DSP development board Original Edition with 4MB Flash & PSRAM Enabled
 // Press Button (I036) to change stations
 
 #include "Arduino.h"
@@ -120,14 +120,14 @@ void setup() {
     audio.setChannels(2); 
     audio.setVolume(20);  // range 0-21
 
-    //pinMode(Button, INPUT);
-    //xTaskCreatePinnedToCore(complexHandler, "ISR Handler Task", 8192, NULL, 20, &complexHandlerTask, tskNO_AFFINITY);
-    //attachInterrupt(digitalPinToInterrupt(Button), isr, FALLING);
-    //esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
-    //RTC_variable();
+    pinMode(Button, INPUT);
+    xTaskCreatePinnedToCore(complexHandler, "ISR Handler Task", 8192, NULL, 20, &complexHandlerTask, tskNO_AFFINITY);
+    attachInterrupt(digitalPinToInterrupt(Button), isr, FALLING);
+    esp_sleep_enable_timer_wakeup(TIME_TO_SLEEP * uS_TO_S_FACTOR);
+    RTC_variable();
     vTaskDelay(pdMS_TO_TICKS(30));
 
-    station_select = 2; 
+    //station_select = 2; 
     change_station(); 
     ESP_LOGI(TAG, "Connected. Starting MP3..."); 
 }
