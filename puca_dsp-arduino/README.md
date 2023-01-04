@@ -1,4 +1,4 @@
-# This directory contains software examples for; 
+This directory contains software examples for; 
 - Arduino IDE
 
 
