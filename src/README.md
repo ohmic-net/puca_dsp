@@ -5,7 +5,6 @@ Example directory structure;
 
 - Audio - contains audio codec driver (WM8978) and functions related to I2S audio configuration
 - Control - contains functions related to control parameters (potentiometers, buttons, trigger inputs)
-...
 
 
 
