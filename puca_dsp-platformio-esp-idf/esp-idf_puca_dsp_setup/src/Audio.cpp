@@ -11,8 +11,8 @@ void Audio::I2S_init(void)
                 .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
                 .communication_format = (i2s_comm_format_t)(I2S_COMM_FORMAT_STAND_I2S),
                 .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1, // high interrupt priority
-                .dma_buf_count = 4,         // adjust for DSP 
-                .dma_buf_len = 40,          // adjust for DSP 
+                .dma_buf_count = BUF_COUNT,         // adjust for DSP 
+                .dma_buf_len = buf_size,          // adjust for DSP 
                 .use_apll = true
             };
     
