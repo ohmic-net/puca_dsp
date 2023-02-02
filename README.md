@@ -4,6 +4,7 @@
 - Arduino IDE
 - VSCode/PlatformIO with Platform Espressif 32 and Framework arduinoespressif32 
 - VSCode/PlatformIO with Platform Espressif 32 and Framework espidf
+- ESP IDF
 
 # Specifications 
 
