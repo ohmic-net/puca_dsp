@@ -26,6 +26,8 @@ Some notes on the Oscillator range;
 
 The 1V/Octave input has a range of 7 octaves, due to the non-linearity of the ESP32's ADC inputs the pitch tracking is accurate over 4 octaves and the highest 3 octaves do not track accurately, as can be seen from the below graph. The pitch resolution is 34.375mV per semitone or 0.34375 mV per cent. 
 
+![Puca_VOCT_input](https://user-images.githubusercontent.com/66629326/224352322-7b5ca16d-112b-43dd-af85-3f3cf80f267c.png)
+
 The Oscillator root frequency range is from midi note A0 (27.50Hz) to A3 (220Hz), used in combination with the 1V/Octave input in practice this gives a musically usable range of ~6 octaves without note drift. 
 
 The FM input allows for linear frequency modulation up to maximum frequency range of 1 midi note. 
