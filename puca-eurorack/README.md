@@ -16,8 +16,8 @@ The `hardware_test_arduino` folder includes Arduino sketches for checking that t
 
 ## Current firmwares; 
 
-- SNES_Verb - emulation of a SNES type reverb with a short delay line. CV2 is delay time, and CV3 is feedback. 
-- Oscillator - a wavetable oscillator with 12 single cycle, band limited waveforms. CV1 is the 1V/Octave input, CV2 is the oscillator root frequency, and CV3 is linear FM. A TOUCH input or a trigger signal on TRIG1 will switch the waveform. 
+- **SNES_Verb** - emulation of a SNES type reverb with a short delay line. CV2 is delay time, and CV3 is feedback. 
+- **Oscillator** - a wavetable oscillator with 12 single cycle, band limited waveforms. CV1 is the 1V/Octave input, CV2 is the oscillator root frequency, and CV3 is linear FM. A TOUCH input or a trigger signal on TRIG1 will switch the waveform. 
 
 #### Notes on the oscillator frequency range; 
 
