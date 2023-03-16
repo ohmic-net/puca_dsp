@@ -4,7 +4,7 @@ This directory includes binary files (`firmware.bin`) for the Eurorack module.
 
 ## Updating the firmware; 
 
-On boot the module creates a WiFi soft access point with the network name "PÚCA DSP". If you open a browser window (Chrome, Firefox) and go to;`http://puca_dsp.local` you will find an html page with a firmware update function. Select the new firmware.bin file to load from your local machine and click upload. Note that you don't need to upload the partitions.bin or spiffs.bin files if using the , unless you have changed these, they are included in each folder in case you are using esptool.py or the Espressif Flash Download Tool instead of the module OTA functionality.
+On boot the module creates a WiFi soft access point with the network name "PÚCA DSP". If you open a browser window (Chrome, Firefox) and go to;`http://puca_dsp.local` you will find an html page with a firmware update function. Select the new firmware.bin file to load from your local machine and click upload. Note that you don't need to upload the partitions.bin or spiffs.bin files if using the web browser for over the air updates, unless you have changed these, they are included in each folder in case you are using esptool.py or the Espressif Flash Download Tool instead of the module OTA functionality.
 
 ## User Interface
 User interface parameters and DSP parameters for each firmware are outlined below. On the module; 
