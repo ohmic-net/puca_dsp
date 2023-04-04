@@ -17,7 +17,7 @@
 - 3D Antenna
 
 **Audio**
-- Wolfson WM9878 Stereo Audio Codec
+- Wolfson WM8978 Stereo Audio Codec
 - Audio Line In on stereo 3.5mm connector
 - Audio Headphone / Line Out on stereo 3.5mm connector
 - Stereo Aux Line In, Audio Mono Out routed to GPIO Header
