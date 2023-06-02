@@ -71,7 +71,8 @@ public:
     void eq4Set(uint8_t cfreq,uint8_t gain);
     void eq5Set(uint8_t cfreq,uint8_t gain);
     void noiseSet(uint8_t enable,uint8_t gain);
-    void alcSet(uint8_t enable, uint8_t maxgain, uint8_t mingain);
+    void alcSet(uint8_t enable);
+    void alcGain(uint8_t maxgain, uint8_t mingain);
     void sleep(uint8_t enable); 
     void resume(void); 
     void monoOut(uint8_t enable); 
@@ -79,6 +80,9 @@ public:
     void sampleRate(uint8_t srate);
     void loopback(uint8_t enable);
     void aMute(uint8_t enable);
+    void alcSetHold(uint8_t hold, uint8_t level);
+    void alcSetMode(uint8_t mode); 
+    void alcSetAD(uint8_t decay, uint8_t attack);
 };
 
 #endif

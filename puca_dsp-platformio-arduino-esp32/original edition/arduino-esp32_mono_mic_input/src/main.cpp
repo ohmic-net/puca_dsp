@@ -36,9 +36,9 @@ void i2s_read (void *arg)   // FreeRTOS task to read the i2s data
               {
                 if (AUDIO_CHANNELS == 1)               // mono
                 { 
-                  data_samples_inL[i] = (float)samples_in[i*AUDIO_CHANNELS]*DIV_S32;
+                  data_samples_inL[i] = (float)samples_in[i*AUDIO_CHANNELS]*DIV_S32;  
                   //Serial.printf("%ld\n", samples_in[i]);
-                  //Serial.printf("%.2f\n ", data_samples_inL[i]); 
+                  Serial.printf("%.2f\n ", data_samples_inL[i]); 
                 } 
                 else if (AUDIO_CHANNELS == 2)          // stereo, returns the left and right input signals into 2 float arrays
                 {

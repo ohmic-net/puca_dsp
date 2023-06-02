@@ -23,7 +23,7 @@
 #define I2S_DOUT       26  
 #define I2S_DIN        27
 
-#define AUDIO_CHANNELS      2
+#define AUDIO_CHANNELS      1
 #define MULT_S32            2147483647
 #define DIV_S32             4.6566129e-10
 #define clip(sample) std::max(-MULT_S32, std::min(MULT_S32, ((int32_t)(sample * MULT_S32))));

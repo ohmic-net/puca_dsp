@@ -75,7 +75,7 @@ uint8_t WM8978::writeReg(uint8_t reg,uint16_t val)
     i2c_master_write_byte(cmd, (WM8978_ADDR << 1) | WRITE_BIT, ACK_CHECK_EN);
     i2c_master_write(cmd, buf, 2, ACK_CHECK_EN);
     i2c_master_stop(cmd);
-    i2c_master_cmd_begin((i2c_port_t) 1, cmd, 1000 / portTICK_PERIOD_MS);
+    i2c_master_cmd_begin((i2c_port_t) 1, cmd, 1000 / portTICK_RATE_MS);
     i2c_cmd_link_delete(cmd);
     
     WM8978_REGVAL_TBL[reg] = val;
@@ -308,7 +308,21 @@ void WM8978::eq5Set(uint8_t cfreq,uint8_t gain)
     writeReg(22,regval);    // R22, EQ5
 }
 
-void WM8978::alcSet(uint8_t enable, uint8_t maxgain, uint8_t mingain)
+
+
+// enable: 0~3, Off/Right channel only/Left channel only/Both
+void WM8978::alcSet(uint8_t enable)
+{
+    uint16_t regval;
+    
+    regval=readReg(32);
+    regval |= (enable<<7);
+    writeReg(32,regval);
+}
+
+// maxgain: 0~7, -6.75dB/-0.75dB/+5.25dB/+11.25dB/+17.25dB/+23.25dB/+29.25dB/+32.25dB
+// mingain: 0~7, -12dB/-6dB/0dB/+6dB/+12dB/+18dB/+24dB/+30dB
+void WM8978::alcGain(uint8_t maxgain, uint8_t mingain)
 {
     uint16_t regval;
     
@@ -316,8 +330,6 @@ void WM8978::alcSet(uint8_t enable, uint8_t maxgain, uint8_t mingain)
     if(mingain>7) mingain=7;
     
     regval=readReg(32);
-    if(enable)
-        regval |= (3<<7);
     regval |= (maxgain<<3)|(mingain<<0);
     writeReg(32,regval);
 }
@@ -336,8 +348,8 @@ void WM8978::noiseSet(uint8_t enable,uint8_t gain)
 
 
 /**********************************************************
-Additional functions written for PICO DSP development board
-https://github.com/ohmic-net/pico_dsp 
+Additional functions written for PUCA DSP development board
+https://github.com/ohmic-net/puca_dsp 
 **********************************************************/
 
 // Sleep mode for power saving 
@@ -361,7 +373,8 @@ void WM8978::resume(void)
 void WM8978::monoOut(uint8_t enable)
 { 
     uint16_t regval;
-    regval = (enable<<3);
+    regval = readReg(57);
+    regval |= (enable<<3);
     writeReg(57,regval);//LDAC2OUT4
 }
 
@@ -369,7 +382,8 @@ void WM8978::monoOut(uint8_t enable)
 void WM8978::spkBoost(uint8_t enable)
 {
     uint16_t regval;
-    regval = (enable<<2);
+    regval = readReg(49);
+    regval |= (enable<<2);
     writeReg(49,regval);
 }
 
@@ -390,7 +404,8 @@ void WM8978::sampleRate(uint8_t srate)
 void WM8978::loopback(uint8_t enable)
 {
     uint16_t regval;
-    regval = enable;
+    regval = readReg(5);
+    regval |= enable;
     writeReg(5,regval);
 }
 
@@ -398,7 +413,53 @@ void WM8978::loopback(uint8_t enable)
 void WM8978::aMute(uint8_t enable)
 {
     uint16_t regval;
-    regval = enable<<2;
+    regval = readReg(10);
+    regval |= (enable<<2);
     writeReg(10,regval);
 }
 
+// ALC set Hold Time and Level 
+// hold: 0~11, 0ms/2.67ms/5.33ms/10.68ms/21.36ms/42.72ms/85.44ms/170.88ms/341.76ms/683.52ms/1.36s, time before gain is increased, 
+// default 0ms
+// level: 0~15, -22.5dBFS/-21dBFS/-19.5dBFS/-18dBFS/-16.5dBFS/-15dBFS/-13.5dBFS/-12dBFS/
+//              -10.5dBFS/-9dBFS/-7.5dBFS/-6dBFS/-4.5dBFS/-3dBFS/-1.5dBFS/-1.5dBFS, signal level at ADC input, default -6DBFS
+void WM8978::alcSetHold(uint8_t hold, uint8_t level)
+{
+    uint16_t regval;
+    
+    if(hold>11) hold=11;
+    if(level>15) level=15;
+    
+    regval=readReg(33);
+    regval |= 0x0B;  // clear default bits 
+    regval |= (hold<<4)|(level<<0);
+    writeReg(33,regval);
+}
+
+// ALC set Mode
+// mode: 0~1, ALC/Limiter, 1 to enable limiter
+void WM8978::alcSetMode(uint8_t mode)
+{
+    uint16_t regval;
+    regval = readReg(34);
+    regval |= (mode<<7);
+    writeReg(34,regval);
+}
+
+// ALC set decay and attack times 
+// decay: 0~11, gain ramp up, time doubles with each step, see datasheet for values                  
+// attack: 0~11, gain ramp down, time doubles with each step, see datasheet for values
+void WM8978::alcSetAD(uint8_t decay, uint8_t attack)
+{
+   uint16_t regval;
+   regval=readReg(34);
+
+    if(decay>11) decay=11;
+    if(attack>11) attack=11;
+
+    regval=readReg(34);
+    regval |= 0x32;  // clear default bits 
+ 
+    regval |= (decay<<4)|(attack<<0);
+    writeReg(34,regval);
+}
