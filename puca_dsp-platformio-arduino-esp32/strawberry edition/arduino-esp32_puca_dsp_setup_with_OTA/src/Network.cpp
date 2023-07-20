@@ -57,6 +57,7 @@ boolean network::serverInit() {
   Update.onProgress(printProgress);
   server.onNotFound(notFound); 
   server.begin();
+  Serial.println("server initialised");
   return true; 
 }
 
@@ -83,5 +84,6 @@ void network::mdnsInit(void)
                                      sizeof(serviceTxtData) / sizeof(serviceTxtData[0])));
 
 	mdns_service_instance_name_set("_http", "_tcp", "puca_dsp");
+  Serial.println("mdns service added");
     return;
 }
