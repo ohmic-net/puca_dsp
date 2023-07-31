@@ -72,4 +72,4 @@ Battery voltage monitoring is available by soldering the BT_LVL solder jumper on
 
 # Video Tutorials
 
-1. Getting started with VS Code and PlatformIO IDE - https://www.youtube.com/watch?v=hKllKXUncVo
+1. Getting started with VS Code and PlatformIO IDE - https://www.youtube.com/watch?v=hKllKXUncVo 
