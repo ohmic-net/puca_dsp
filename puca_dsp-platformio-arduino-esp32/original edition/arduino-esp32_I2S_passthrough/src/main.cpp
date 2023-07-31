@@ -1,4 +1,4 @@
-// I2S Passthrough example for PICO_DSP development board with 4MB Flash and 8MB PSRAM
+// I2S Passthrough example for PUCA_DSP development board with 4MB Flash and PSRAM
 
 #include <Arduino.h>
 #include "freertos/FreeRTOS.h"
@@ -12,12 +12,15 @@
 #include "driver/periph_ctrl.h"
 #include <math.h>
 #include "WM8978.h"
+#include "soc/timer_group_struct.h"
+#include "soc/timer_group_reg.h"
+
 
 #define I2S_SAMPLE_RATE     (32000)   // I2S sample rate 
 #define I2S_READLEN         256 * 4
 
 // Define 12S pins
-#define I2S_BCLK       23  // Bit clock // 33 on TTGO_TAUDIO
+#define I2S_BCLK       23  // Bit clock 
 #define I2S_LRC        25  // Left Right / WS Clock
 #define I2S_DOUT       26  
 #define I2S_DIN        27
@@ -82,12 +85,22 @@ float i2s_samples_write[I2S_READLEN / sizeof(float)];
 		/* left channel filter */
 		for (uint32_t i = 0; i < i2s_bytes_read / 2; i += 2) {
 			i2s_samples_write[i] = dummyfilter(i2s_samples_read[i]);
+      //i2s_samples_write[i] = i2s_samples_read[i];
     }
 		/* right channel filter */
 		for (uint32_t i = 1; i < i2s_bytes_read / 2; i += 2) {
 			i2s_samples_write[i] = dummyfilter(i2s_samples_read[i]);
+      //i2s_samples_write[i] = i2s_samples_read[i];
     }
 		i2s_write(I2S_NUM_0, i2s_samples_write, i2s_bytes_read, &i2s_bytes_written, 100);
+
+    TIMERG0.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+    TIMERG0.wdt_feed=1;
+    TIMERG0.wdt_wprotect=0;
+
+    TIMERG1.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+    TIMERG1.wdt_feed=1;
+    TIMERG1.wdt_wprotect=0;
 
 	}
 }
@@ -106,12 +119,17 @@ void setup() {
   wm8978.hpVolSet(40,40);   // headphone volume
   wm8978.i2sCfg(2,0);       // I2S format MSB, 16Bit
 
-  vTaskDelay(2000/portTICK_RATE_MS);  
+  vTaskDelay(500/portTICK_RATE_MS);  
   i2s_passthrough();  
  
 }
 
 void loop() {
-//  vTaskDelay(pdMS_TO_TICKS(100));
+
+vTaskDelay(pdMS_TO_TICKS(100)); 
+
+TIMERG1.wdt_wprotect=TIMG_WDT_WKEY_VALUE;
+TIMERG1.wdt_feed=1;
+TIMERG1.wdt_wprotect=0;
 
 }
