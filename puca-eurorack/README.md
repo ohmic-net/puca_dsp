@@ -8,7 +8,9 @@ On boot the module creates a WiFi soft access point with the network name "PÚCA
 
 ![OTA_update](https://user-images.githubusercontent.com/66629326/231739002-3523b717-0733-4023-9e7b-d31635c66d37.png)
 
-Select the new firmware.bin file to load from your local machine and click "Update". Note that you don't need to upload the partitions.bin or spiffs.bin files if using the web browser for over the air updates, unless you have changed these, they are included in each folder in case you are using esptool.py or the Espressif Flash Download Tool instead of the module OTA functionality.
+Select the new firmware.bin file to load from your local machine and click "Update". After the new firmware has been uploaded, the module will reset and the new firmware will boot. At this point the network connection will be lost, and then on reboot a new WiFi soft access point will be created. 
+
+Note that you don't need to upload the partitions.bin or spiffs.bin files if using the web browser for over the air updates, unless you have changed these, they are included in each folder in case you are using esptool.py or the Espressif Flash Download Tool instead of the module OTA functionality.
 
 ## User Interface
 User interface parameters and DSP parameters for each firmware are outlined below. On the module; 
@@ -21,7 +23,8 @@ The `hardware_test_arduino` folder includes Arduino sketches for checking that t
 ## Current firmwares; 
 
 - **SNES_Verb** - emulation of a SNES type reverb with a short delay line. CV2 is delay time, and CV3 is feedback. 
-- **Oscillator** - a wavetable oscillator with 12 single cycle, band limited waveforms. CV1 is the 1V/Octave input, CV2 is the oscillator root frequency, and CV3 is linear FM. A TOUCH input or a trigger signal on TRIG1 will switch the waveform. 
+- **Oscillator** - a wavetable oscillator with 12 single cycle, band limited waveforms. CV1 is the 1V/Octave input, CV2 is the oscillator root frequency, and CV3 is linear FM. A TOUCH input or a trigger signal on TRIG1 will switch the waveform.
+- **Chorus** - stereo chorus effect. CV2 is depth, and CV3 is phase difference. 
 
 #### Notes on the oscillator frequency range; 
 
