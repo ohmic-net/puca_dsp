@@ -67,8 +67,10 @@ Battery voltage monitoring is available by soldering the BT_LVL solder jumper on
 *Height measurement is with pin headers soldered. 
 
 # Open Source Licensing 
+![certification-mark-IE000006-wide](https://github.com/ohmic-net/puca_dsp/assets/66629326/998e09f9-eb99-40c9-b119-7107092a1e06)
+**PÚCA DSP** is Open Source Hardware Association certified, and can be found on the OSHWA website here; https://certification.oshwa.org/list.html
 
-**PÚCA DSP** hardware files are released as open source under the CERN v1.2 license. **PÚCA DSP** software examples are released under the MIT license, software examples using Faust DSP also contain additional license information relevant to Faust DSP. Please review these licenses before using these files in your own projects to understand your obligations.
+Hardware design files are released as open source under the CERN v1.2 license. **PÚCA DSP** software examples are released under the MIT license, software examples using Faust DSP also contain additional license information relevant to Faust DSP. Please review these licenses before using these files in your own projects to understand your obligations.
 
 # Video Tutorials
 
