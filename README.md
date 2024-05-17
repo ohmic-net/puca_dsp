@@ -73,6 +73,8 @@ Battery voltage monitoring is available by soldering the BT_LVL solder jumper on
 Hardware design files are released as open source under the CERN v1.2 license. **PÚCA DSP** software examples are released under the MIT license, software examples using Faust DSP also contain additional license information relevant to Faust DSP. Please review these licenses before using these files in your own projects to understand your obligations.
 
 # Video Tutorials
-
 1. Getting started with VS Code and PlatformIO IDE - https://www.youtube.com/watch?v=hKllKXUncVo
 2. Configuring the audio codec - https://www.youtube.com/watch?v=Auh9VE7Pjl8
+
+# Need a board?
+There are a few available on Tindie - https://www.tindie.com/products/ohmic/puca-dsp/
