@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>PUCA_DSP OTA Update</title>
+
+	<style>
+		body {
+			font-family: Verdana, Geneva, sans-serif;
+			text-align: center;
+		}
+
+		progress {
+			width: 300px;
+			height: 20px;
+		}
+
+		svg {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>PUCA_DSP OTA Firmware Update</h1>
+
+	<form id="uploadForm">
+		<input type="file" id="fileInput" name="update" required>
+		<br><br>
+		<input type="submit" value="Update Firmware">
+	</form>
+
+	<br>
+
+	<progress id="progressBar" value="0" max="100"></progress>
+	<span id="progressText">0%</span>
+
+	<!-- Inline SVG Logo with traced paths -->
+	<svg width="142" height="142" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PUCA DSP Logo">
+		<!-- Logo shapes and text as paths (replace with full path data for pixel-perfect match) -->
+
+		<!-- Ears -->
+		<path fill="#c8bde6" d="M120 90 L180 280 L210 250 L160 80 Z"/>
+		<path fill="#c8bde6" d="M392 90 L332 280 L302 250 L352 80 Z"/>
+
+		<!-- Ear accents -->
+		<path stroke="#b2a7d6" stroke-width="18" d="M150 110 L185 260"/>
+		<path stroke="#b2a7d6" stroke-width="18" d="M362 110 L327 260"/>
+
+		<!-- Head silhouette -->
+		<path fill="#4f6188" d="
+			M256 160
+			C180 160 130 220 130 320
+			C130 420 190 480 256 480
+			C322 480 382 420 382 320
+			C382 220 332 160 256 160 Z"/>
+
+		<!-- Eyes -->
+		<circle fill="#ffffff" cx="220" cy="300" r="10"/>
+		<circle fill="#ffffff" cx="292" cy="300" r="10"/>
+
+		<!-- Logo text 'púca' traced as paths -->
+		<path fill="#7d86b2" d="M110 70 ... [path for 'p']"/>
+		<path fill="#7d86b2" d="M160 70 ... [path for 'ú']"/>
+		<path fill="#7d86b2" d="M210 70 ... [path for 'c']"/>
+		<path fill="#7d86b2" d="M260 70 ... [path for 'a']"/>
+
+		<!-- Website text traced as paths -->
+		<path fill="#ffffff" d="M100 450 ... [path for 'www.ohmic.net']"/>
+	</svg>
+
+	<script>
+		const form = document.getElementById("uploadForm");
+		const fileInput = document.getElementById("fileInput");
+		const progressBar = document.getElementById("progressBar");
+		const progressText = document.getElementById("progressText");
+
+		form.addEventListener("submit", function (e) {
+			e.preventDefault();
+
+			const file = fileInput.files[0];
+			if (!file) return;
+
+			const formData = new FormData();
+			formData.append("update", file);
+
+			const xhr = new XMLHttpRequest();
+			xhr.open("POST", "/doUpdate", true);
+
+			xhr.upload.onprogress = function (event) {
+				if (event.lengthComputable) {
+					const percent = Math.round((event.loaded / event.total) * 100);
+					progressBar.value = percent;
+					progressText.textContent = percent + "%";
+				}
+			};
+
+			xhr.onload = function () {
+				if (xhr.status === 200) {
+					progressText.textContent = "Upload complete, rebooting...";
+				} else {
+					progressText.textContent = "Upload failed";
+				}
+			};
+
+			xhr.onerror = function () {
+				progressText.textContent = "Upload error";
+			};
+
+			xhr.send(formData);
+		});
+	</script>
+</body>
+</html>
