@@ -1,4 +1,5 @@
-// example microphone omnidirectional configuration using Faust DSP for PICO_DSP development board 
+// example microphone processing example for PÚCA_DSP development board
+// mono mic inputs, broadside array and endfire array configurations
 
 #include <Arduino.h>
 #include <stdio.h>
@@ -7,9 +8,12 @@
 #include "esp_system.h"
 #include "esp_spi_flash.h"
 #include "WM8978.h"
-#include "picodsp_mics_omnidirectional.h"
+#include "audio.h"
+#include "dsp.h"
 
 WM8978 wm8978; 
+Audio audio; 
+DSP dsp; 
 
 void setup() {
   
@@ -27,16 +31,15 @@ void setup() {
   wm8978.hpVolSet(50,50);
   wm8978.i2sCfg(2,0);  // format MSB, 16Bit 
   vTaskDelay(500 / portTICK_PERIOD_MS);
-    
-  int SR = 48000;
-  int BS = 8;
-  picodsp_mics_omnidirectional* DSP = new picodsp_mics_omnidirectional(SR, BS);
 
-  DSP->start();
+  audio.init();
+  dsp.init(); 
+  
   vTaskDelay(500 / portTICK_PERIOD_MS);
 }
 
 void loop() {
  
-//vTaskDelay(pdMS_TO_TICKS(10)); 
+vTaskDelay(pdMS_TO_TICKS(10)); 
+dsp.processBlock(); 
 }
