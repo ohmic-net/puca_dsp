@@ -29,8 +29,8 @@
 Audio audio(I2S_BCLK, I2S_LRC, I2S_DOUT);  // create an instance of audio class 
 WM8978 wm8978;   // create an instance of audio codec setup. The default Sample Rate for the DAC and ADC is 48kHz
  
-String ssid =     "ZyXEL_3EE1";   // Enter WiFi Network settings here
-String password = "CED3RCHTJM";
+String ssid =     "";   // Enter WiFi Network settings here
+String password = "";
 
 #define uS_TO_S_FACTOR 1000000 // Conversion factor uS to seconds
 #define TIME_TO_SLEEP 2 // time in seconds to sleep for 
