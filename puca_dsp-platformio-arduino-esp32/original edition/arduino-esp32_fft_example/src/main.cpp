@@ -52,16 +52,22 @@ static void calculateEnergy(float *vReal, float *vImag, uint16_t samples)
 // sums up energy in bins per octave
 static void sumEnergy(const float *bins, float *energies, int bin_size, int num_octaves)
 {
-    // skip the first bin
+    // skip the first bin / DC
     int bin = bin_size;
     for (int octave = 0; octave < num_octaves; octave++) {
         float sum = 0.0;
-        for (int i = 0; i < bin_size; i++) {
-            sum += real[bin++];
-        }
-        energies[octave] = sum;
+        for (int i = 0; i < bin_size && bin < fft_samples; i++) {
+    sum += real[bin++];
+}
+       // Convert to dB scale for display
+        energies[octave] = 10.0f * log10f(sum + 1e-6f);  // add tiny value to avoid log10(0)
+
+        // Print with 2 decimal places safely
+        Serial.println(energies[octave], 2);
+
+        // Double the bin size for next octave
         bin_size *= 2;
-        Serial.println(energies[octave]);   // open Serial Plotter in Arduino IDE to view the frequency domain data
+    
     }
 }
 

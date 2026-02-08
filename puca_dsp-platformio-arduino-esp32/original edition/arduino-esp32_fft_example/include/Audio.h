@@ -12,9 +12,9 @@
 #include <math.h>
 #include <algorithm>
 
-#define I2S_SAMPLE_RATE     36000   // I2S sample rate   
+#define I2S_SAMPLE_RATE     48000   // I2S sample rate   
 #define BUF_COUNT           4       // range 2 < 128 
-#define BLOCK_SIZE          1024    // range 8 < 4092  // at least one full cycle for a periodic signal 
+#define BLOCK_SIZE          512    // range 8 < 4092  // at least one full cycle for a periodic signal 
 
 // Define 12S pins
 #define I2S_MCLKPIN     0     // MCLK 
