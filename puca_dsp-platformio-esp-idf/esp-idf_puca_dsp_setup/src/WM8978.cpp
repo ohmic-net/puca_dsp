@@ -75,7 +75,7 @@ uint8_t WM8978::writeReg(uint8_t reg,uint16_t val)
     i2c_master_write_byte(cmd, (WM8978_ADDR << 1) | WRITE_BIT, ACK_CHECK_EN);
     i2c_master_write(cmd, buf, 2, ACK_CHECK_EN);
     i2c_master_stop(cmd);
-    i2c_master_cmd_begin((i2c_port_t) 1, cmd, 1000 / portTICK_RATE_MS);
+    i2c_master_cmd_begin((i2c_port_t) 1, cmd, 1000 / portTICK_PERIOD_MS);
     i2c_cmd_link_delete(cmd);
     
     WM8978_REGVAL_TBL[reg] = val;
