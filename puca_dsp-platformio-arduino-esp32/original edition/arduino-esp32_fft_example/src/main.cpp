@@ -81,6 +81,8 @@ void i2s_read_to_fft (void *arg)   // FreeRTOS task to read the i2s data and pro
   bool read_result = i2s_read(I2S_NUM_0, &samples_in, AUDIO_CHANNELS*BLOCK_SIZE*I2S_BITS_PER_SAMPLE_32BIT/8, &bytes_read, portMAX_DELAY);
   uint32_t samples_read = bytes_read / sizeof(int32_t);
 
+  //printf("%ld\n", samples_in[0]);
+
   integerToFloat(samples_in, real, imag, fft_samples);  // convert the 32bit input samples
 
   fft.Windowing(FFT_WIN_TYP_FLT_TOP, FFT_FORWARD);  // apply windowing
